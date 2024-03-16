@@ -1,0 +1,19 @@
+-------------Spôsob generovania herného poľa----------------
+1. Vytvorit' pole 'field' s veľkosťou RowCount * ColumnCount.
+2. Potom vyuzijeme metodu SwitchTileBlock() x krat, kde x je IlluminatedBlockCount.
+3. Budeme to robit' pomocou cyklusa.
+4. Musíme tiež skontrolovať, či sa každy centrum bloku zmestí na miesto, ktoré ešte nie je osvetlené
+5. Zvyšné dlaždice zostanú neosvetlené.
+------------------------------------------------------------
+
+-------------Spôsob overovania stavov hry-------------------
+1.Po každom ťahu v hre sa kontroluje, či je hra prehratá alebo vyhratá. Na to sluzi metoda IsSolved().
+2.Ak vyprší čas, hra sa označí ako prehratá a skončí.
+3.Hra sa považuje za vyhratú, ak platí: na pole nie je ziadna osvetlená dlaždica.
+4.Ak hra nebola ani vyhratá ani prehratá, pokračuje sa ďalším ťahom hráča.
+------------------------------------------------------------
+
+-------------Spôsob prechodu medzi stavmi dlaždíc-----------
+1.Na začiatku sú na pole aj DARK(state je false) aj ILLUMINATED(state je true) dlaždice. 
+2.Metoda switchTile() zmeni stav dlazdice na opačny.
+------------------------------------------------------------
