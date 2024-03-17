@@ -2,9 +2,7 @@ package lightsoff.menu;
 
 import lightsoff.entity.Rating;
 import lightsoff.entity.Comment;
-import lightsoff.service.CommentServiceJDBC;
-import lightsoff.service.RatingServiceJDBC;
-import lightsoff.service.ScoreServiceJDBC;
+import lightsoff.service.*;
 import lightsoff.entity.Score;
 
 import java.util.Date;
@@ -27,6 +25,7 @@ public class MenuUI {
 
     public void handleInput(){
         System.out.print("Enter please your selection:\n" +
+                "\u001B[36mGame info <I>\u001B[0m,\n" +
                 "\u001B[35mShow Top scores <S>\u001B[0m,\n" +
                 "\u001B[31mReset all scores <RS>\u001B[0m,\n" +
                 "\u001B[33mAdd new comment <C>\u001B[0m,\n" +
@@ -43,7 +42,10 @@ public class MenuUI {
     }
 
     private void readLine(String command) {
-        if(command.equals("S")){
+        if(command.equals("I")){
+            printGameInfo();
+        }
+        else if(command.equals("S")){
             printScores();
         }
         else if(command.equals("SR")){
@@ -76,6 +78,14 @@ public class MenuUI {
         else{
             System.out.println("Wrong input!");
         }
+    }
+
+    public void printGameInfo(){
+        GameInfoServiceJDBC gameInfoServiceJDBC = new GameInfoServiceJDBC();
+        System.out.print("Enter please name of game: ");
+        Scanner console = new Scanner(System.in);
+        String game = console.nextLine();
+        System.out.printf("Game information:\n\u001B[33m%s\u001B[0m\n",gameInfoServiceJDBC.getGameInfo(game));
     }
 
     public void printScores(){
