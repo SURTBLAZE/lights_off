@@ -1,4 +1,4 @@
-package tests.core;
+package core;
 
 import lightsoff.core.Tile;
 import org.junit.Test;

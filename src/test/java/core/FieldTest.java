@@ -1,10 +1,7 @@
-package tests.core;
+package core;
 
 import lightsoff.core.Field;
-import lightsoff.core.TileState;
 import org.junit.Test;
-
-import javax.swing.plaf.PanelUI;
 
 import static org.junit.Assert.*;
 public class FieldTest {

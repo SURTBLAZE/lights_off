@@ -23,7 +23,7 @@ public class ConsoleUI {
 
     public void play(Field field){
         setField(field);
-        setAttempts(field.getIlluminatedBlockCount() + (4 - bonusCoefficient));
+        setAttempts(field.getIlluminatedBlockCount() + (4 - bonusCoefficient) * 2);
         setLevel(field.getIlluminatedBlockCount() - 1);
 
         if(username == null || username.isEmpty()) {

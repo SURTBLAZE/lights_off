@@ -1,7 +1,5 @@
-package tests.consoleui;
+package consoleui;
 import lightsoff.consoleui.ConsoleUI;
-import lightsoff.core.Field;
-import lightsoff.core.GameState;
 import lightsoff.service.ScoreServiceJDBC;
 import org.junit.Test;
 
