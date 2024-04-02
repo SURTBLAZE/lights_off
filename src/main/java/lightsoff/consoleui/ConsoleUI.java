@@ -4,7 +4,8 @@ import lightsoff.core.Field;
 import lightsoff.core.GameState;
 import lightsoff.entity.Score;
 import lightsoff.menu.MenuUI;
-import lightsoff.service.ScoreServiceJDBC;
+import lightsoff.service.ScoreService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -19,7 +20,12 @@ public class ConsoleUI {
     private int bonusCoefficient = 1; //default value
     private String username;
     private String mode = "Simple";
-    private MenuUI menuUI = new MenuUI();
+
+    @Autowired
+    private MenuUI menuUI;
+
+    @Autowired
+    private ScoreService scoreService;
 
     public void play(Field field){
         setField(field);
@@ -58,12 +64,12 @@ public class ConsoleUI {
             field.setGameState(GameState.PLAYING);
         }
         else{
-            saveScore(new ScoreServiceJDBC());
+            saveScore(scoreService);
         }
     }
 
-    public void saveScore(ScoreServiceJDBC scoreServiceJDBC){
-        scoreServiceJDBC.addScore(new Score("Lights off",username,totalScore,new Date()));
+    public void saveScore(ScoreService scoreService){
+        scoreService.addScore(new Score("Lights off",username,totalScore,new Date()));
     }
 
     public void show(Field field){
@@ -186,5 +192,9 @@ public class ConsoleUI {
 
     public void setBonusCoefficient(int bonusCoefficient) {
         this.bonusCoefficient = bonusCoefficient;
+    }
+
+    public void setMenuUI(MenuUI menuUI) {
+        this.menuUI = menuUI;
     }
 }

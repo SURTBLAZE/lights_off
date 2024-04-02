@@ -1,6 +1,5 @@
 package lightsoff;
 
-
 import lightsoff.consoleui.ConsoleUI;
 import lightsoff.core.Field;
 import lightsoff.core.GameState;

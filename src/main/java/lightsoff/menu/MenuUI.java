@@ -4,6 +4,7 @@ import lightsoff.entity.Rating;
 import lightsoff.entity.Comment;
 import lightsoff.service.*;
 import lightsoff.entity.Score;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,15 @@ import java.util.Scanner;
 
 public class MenuUI {
     private boolean state; //OPENED - false, CLOSED - true
+
+    @Autowired
+    private ScoreService scoreService;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private RatingService ratingService;
+    @Autowired
+    private GameInfoService gameInfoService;
 
     public MenuUI(){
         this.state = false;
@@ -81,19 +91,17 @@ public class MenuUI {
     }
 
     public void printGameInfo(){
-        GameInfoServiceJDBC gameInfoServiceJDBC = new GameInfoServiceJDBC();
         System.out.print("Enter please name of game: ");
         Scanner console = new Scanner(System.in);
         String game = console.nextLine();
-        System.out.printf("Game information:\n\u001B[33m%s\u001B[0m\n",gameInfoServiceJDBC.getGameInfo(game));
+        System.out.printf("Game information:\n\u001B[33m%s\u001B[0m\n",gameInfoService.getGameInfo(game));
     }
 
     public void printScores(){
-        ScoreServiceJDBC scoreServiceJDBC = new ScoreServiceJDBC();
         System.out.print("Enter please name of game: ");
         Scanner console = new Scanner(System.in);
         String game = console.nextLine();
-        List<Score> scores = scoreServiceJDBC.getTopScores(game);
+        List<Score> scores = scoreService.getTopScores(game);
         if(scores.isEmpty()){
             System.out.println("There are no scores in database");
         }
@@ -103,7 +111,6 @@ public class MenuUI {
     }
 
     public void rate(){
-        RatingServiceJDBC ratingServiceJDBC = new RatingServiceJDBC();
         System.out.print("Enter please name of game: ");
         Scanner console = new Scanner(System.in);
         String game = console.nextLine();
@@ -114,40 +121,37 @@ public class MenuUI {
             System.out.print("Rate please this game <1-5>: ");
             rating = console.nextInt();
         }while(rating < 1 || rating > 5);
-        ratingServiceJDBC.setRating(new Rating(game,username,rating,new Date()));
+        ratingService.setRating(new Rating(game,username,rating,new Date()));
     }
 
     public void printRating(){
-        RatingServiceJDBC ratingServiceJDBC = new RatingServiceJDBC();
         System.out.print("Enter please name of game: ");
         Scanner console = new Scanner(System.in);
         String game = console.nextLine();
         System.out.print("Enter please username: ");
         String username = console.nextLine();
-        int rating = ratingServiceJDBC.getRating(game,username);
+        double rating = ratingService.getRating(game,username);
         if(rating == -1){
             System.out.println("Wrong input!");
         }
         else{
-            System.out.printf("The rating of user %s in game %s is %d\n", username,game,rating);
+            System.out.printf("The rating of user %s in game %s is %2f\n", username,game,rating);
         }
     }
     public void printAverageRating(){
-        RatingServiceJDBC ratingServiceJDBC = new RatingServiceJDBC();
         System.out.print("Enter please name of game: ");
         Scanner console = new Scanner(System.in);
         String game = console.nextLine();
-        int averageRating = ratingServiceJDBC.getAverageRating(game);
+        double averageRating = ratingService.getAverageRating(game);
         if(averageRating == -1){
             System.out.println("There are no ratings or some error!");
         }
         else{
-            System.out.printf("The avarege rating in game %s is %d\n",game,averageRating);
+            System.out.printf("The avarege rating in game %s is %2f\n",game,averageRating);
         }
     }
 
     public void addNewComment(){
-        CommentServiceJDBC commentServiceJDBC = new CommentServiceJDBC();
         System.out.print("Enter please name of game: ");
         Scanner console = new Scanner(System.in);
         String game = console.nextLine();
@@ -155,15 +159,14 @@ public class MenuUI {
         String username = console.nextLine();
         System.out.print("Enter please your comment: ");
         String comment = console.nextLine();
-        commentServiceJDBC.addComment(new Comment(game,username,comment,new Date()));
+        commentService.addComment(new Comment(game,username,comment,new Date()));
     }
 
     public void printComments(){
-        CommentServiceJDBC commentServiceJDBC = new CommentServiceJDBC();
         System.out.print("Enter please name of game: ");
         Scanner console = new Scanner(System.in);
         String game = console.nextLine();
-        List<Comment> comments = commentServiceJDBC.getComments(game);
+        List<Comment> comments = commentService.getComments(game);
         if(comments.isEmpty()){
             System.out.println("There are no comments in database");
         }
@@ -173,19 +176,16 @@ public class MenuUI {
     }
 
     public void resetScores(){
-        ScoreServiceJDBC scoreServiceJDBC = new ScoreServiceJDBC();
-        scoreServiceJDBC.reset();
+        scoreService.reset();
         System.out.println("Scores are empty!");
     }
     public void resetComments(){
-        CommentServiceJDBC commentServiceJDBC = new CommentServiceJDBC();
-        commentServiceJDBC.reset();
+        commentService.reset();
         System.out.println("Comments are empty!");
     }
 
     public void resetRatings(){
-        RatingServiceJDBC ratingServiceJDBC = new RatingServiceJDBC();
-        ratingServiceJDBC.reset();
+        ratingService.reset();
         System.out.println("Ratings are empty!");
     }
 

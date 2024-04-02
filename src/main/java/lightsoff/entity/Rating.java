@@ -1,13 +1,31 @@
 package lightsoff.entity;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Rating {
+@Entity
+@NamedQuery(name = "Rating.getAverageRating",
+            query = "SELECT avg(r.rating) FROM Rating r WHERE r.game =:game")
+@NamedQuery(name = "Rating.getRating",
+            query = "SELECT r.rating FROM Rating r WHERE r.game =:game AND r.player =:player")
+@NamedQuery(name = "Rating.resetRatings",
+            query = "DELETE FROM Rating")
+public class Rating implements Serializable {
+    @Id
+    @GeneratedValue
+    private int ident;
     private String player;
     private String game;
     private int rating;
     private Date ratedOn;
+
+    public Rating(){}
 
     public Rating(String game, String player, int rating, Date ratedOn){
         this.game = game;
@@ -47,6 +65,9 @@ public class Rating {
     public void setRatedOn(Date ratedOn) {
         this.ratedOn = ratedOn;
     }
+
+    public int getIdent() { return ident; }
+    public void setIdent(int ident) { this.ident = ident; }
 
     @Override
     public String toString(){

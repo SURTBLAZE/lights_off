@@ -2,6 +2,7 @@ package service;
 
 import lightsoff.service.RatingService;
 import lightsoff.service.RatingServiceJDBC;
+import lightsoff.service.RatingServiceJPA;
 import org.junit.Test;
 import lightsoff.entity.Rating;
 
@@ -10,7 +11,7 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 public class RatingServiceTest {
-    private RatingService ratingService = new RatingServiceJDBC();
+    private RatingService ratingService = new RatingServiceJPA();
 
     @Test
     public void reset(){
@@ -24,7 +25,6 @@ public class RatingServiceTest {
     @Test
     public void setRating(){
         var date = new Date();
-
         ratingService.reset();
         ratingService.setRating(new Rating("Lights off","Valeri",5,new Timestamp(date.getTime())));
         assertEquals(5, ratingService.getRating("Lights off","Valeri"));
