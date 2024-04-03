@@ -24,9 +24,13 @@ public class SpringClient {
     }
 
     @Bean
-    public CommandLineRunner runner(ConsoleUI ui,Field field) {
-        field.generate();
-        return s -> ui.play(field);
+    public CommandLineRunner runner(Game game) {
+        return s -> game.startGame();
+    }
+
+    @Bean
+    public Game game(){
+        return new Game();
     }
 
     @Bean
