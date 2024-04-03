@@ -1,4 +1,4 @@
-POST http://localhost:8080/rest/score
+POST http://localhost:8080/api/score
 Content-Type: application/json
 
 {
@@ -7,3 +7,4 @@ Content-Type: application/json
    "points": 100,
    "playedOn": "2024-03-25T12:40:33"
 }
+

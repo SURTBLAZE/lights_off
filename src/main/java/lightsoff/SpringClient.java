@@ -15,7 +15,7 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-//@Configuration
+@Configuration
 @ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
         pattern = "lightsoff.server.*"))
 public class SpringClient {
