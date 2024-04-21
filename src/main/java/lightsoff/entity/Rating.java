@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@NamedQuery(name = "Rating.updateRating",
+            query = "UPDATE Rating r SET r.rating =:rating WHERE r.game =:game AND r.player =:player")
 @NamedQuery(name = "Rating.getAverageRating",
             query = "SELECT avg(r.rating) FROM Rating r WHERE r.game =:game")
 @NamedQuery(name = "Rating.getRating",

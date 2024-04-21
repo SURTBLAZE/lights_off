@@ -64,6 +64,13 @@ public class Field {
         }
     }
 
+    public Tile getTile(int row, int column){
+        if(row >= 0 && row < rowCount && column >= 0 && column < columnCount) {
+            return field[row][column];
+        }
+        return null;
+    }
+
     public Tile[][] getField() {
         return field;
     }

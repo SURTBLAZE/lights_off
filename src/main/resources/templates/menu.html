@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link rel="stylesheet" href="/css/stylesheet.css"/>
+    <link rel="stylesheet" href="/css/menu.css"/>
+</head>
+<body>
+
+<h1>Menu</h1>
+
+<div class="menu-wrapper">
+    <div class="options-block">
+        <a href="/lightsoff/menu/getgameinfo" class="menu-link">Game info</a><br>
+        <a href="/lightsoff/menu/gettopscores" class="menu-link">Show Top scores</a><br>
+        <a href="/lightsoff/menu/resetallscores" class="menu-link">Reset all scores</a><br>
+        <a href="/lightsoff/menu/addnewcomment" class="menu-link">Add new comment</a><br>
+        <a href="/lightsoff/menu/getcomments" class="menu-link">Get last 10 comments</a><br>
+        <a href="/lightsoff/menu/resetcomments" class="menu-link">Reset all comments</a><br>
+        <a href="/lightsoff/menu/setrating" class="menu-link">Set new rating</a><br>
+        <a href="/lightsoff/menu/getrating" class="menu-link">Get rating</a><br>
+        <a href="/lightsoff/menu/getaveragerating" class="menu-link">Get average rating</a><br>
+        <a href="/lightsoff/menu/resetratings" class="menu-link">Reset all ratings</a><br>
+        <a href="/lightsoff/backtogame" class="menu-link">Back to the game</a><br>
+    </div>
+    <div class="request-results-wrapper">
+        <div class="request-block">
+            <form action="/menu/addcomment" method="post" th:if="${@lightsOffController.isAddComment}">
+                <label class="login-label">
+                    <p>Enter please your comment</p>
+                </label>
+                <input class="user-input" type="text" name="comment" id="name" placeholder="Your comment"  />
+                <input class="add-button" type="submit" value="Add comment"/>
+            </form>
+            <form action="/menu/cancel" method="post" th:if="${@lightsOffController.isAddComment}">
+                <input class="cancel-button" type="submit" value="Cancel"/>
+            </form>
+
+            <form action="/menu/setrating" method="post" th:if="${@lightsOffController.isSetRating}">
+                <label class="login-label">
+                    <p>Enter please a rating</p>
+                </label>
+                <input class="user-input" type="text" name="rating" placeholder="Your rating <1-5>"  />
+                <input class="add-button" type="submit" value="Set rating"/>
+            </form>
+            <form action="/menu/cancel" method="post" th:if="${@lightsOffController.isSetRating}">
+                <input class="cancel-button" type="submit" value="Cancel"/>
+            </form>
+
+        </div>
+        <div class="results-block">
+            <span class="game-info-p" th:if="${@lightsOffController.isGameInfo}" th:utext="${@lightsOffController.printGameInfo()}"></span>
+            <span class="results" th:if="${@lightsOffController.isTopScores}" th:utext="${@lightsOffController.printTopScores()}"></span>
+            <span class="results" th:if="${@lightsOffController.isGetComments}" th:utext="${@lightsOffController.printComments()}"></span>
+            <span class="results" th:if="${@lightsOffController.isAverageRating}" th:utext="${@lightsOffController.printAverageRating()}"></span>
+            <span class="results" th:if="${@lightsOffController.isGetRating}" th:utext="${@lightsOffController.printUserRating()}"></span>
+            <span class="status" th:if="${@lightsOffController.isStatusMessage}" th:utext="${@lightsOffController.printStatusMessage()}"></span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

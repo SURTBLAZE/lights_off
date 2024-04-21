@@ -13,7 +13,6 @@ public class RatingServiceRestClient implements RatingService{
 
     @Autowired
     private RestTemplate restTemplate;
-    //private RestTemplate restTemplate = new RestTemplate();
 
     @Override
     public void setRating(Rating rating) {

@@ -13,7 +13,16 @@ public class RatingServiceJPA implements RatingService{
     private EntityManager entityManager;
     @Override
     public void setRating(Rating rating) throws RatingException {
-        entityManager.persist(rating);
+        if(getRating(rating.getGame(),rating.getPlayer()) == -1) {
+            entityManager.persist(rating);
+        }
+        else{
+            entityManager.createNamedQuery("Rating.updateRating")
+                    .setParameter("rating",rating.getRating())
+                    .setParameter("game",rating.getGame())
+                    .setParameter("player",rating.getPlayer())
+                    .executeUpdate();
+        }
     }
 
     @Override
@@ -29,14 +38,17 @@ public class RatingServiceJPA implements RatingService{
 
     @Override
     public int getRating(String game, String player) throws RatingException {
-        Object obj = entityManager.createNamedQuery("Rating.getRating")
-                .setParameter("game",game)
-                .setParameter("player",player)
-                .getSingleResult();
-        if(obj != null){
-            return (int) obj;
+        Object obj;
+        try {
+            obj = entityManager.createNamedQuery("Rating.getRating")
+                    .setParameter("game", game)
+                    .setParameter("player", player)
+                    .getSingleResult();
         }
-        return -1;
+        catch (Exception e){
+            return -1;
+        }
+        return (int)obj;
     }
 
     @Override

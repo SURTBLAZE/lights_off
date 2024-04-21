@@ -1,5 +1,7 @@
 package lightsoff.server;
 
+import lightsoff.server.controller.LightsOffController;
+import lightsoff.server.controller.UserController;
 import lightsoff.service.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,5 +36,15 @@ public class GameStudioServer {
     @Bean
     public GameInfoService gameInfoService(){
         return new GameInfoServiceJPA();
+    }
+
+    @Bean
+    public LightsOffController lightsOffController(){
+        return new LightsOffController();
+    }
+
+    @Bean
+    public UserController userController(){
+        return new UserController();
     }
 }

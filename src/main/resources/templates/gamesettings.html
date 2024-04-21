@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link rel="stylesheet" href="/css/stylesheet.css"/>
+    <link rel="stylesheet" href="/css/gamesettings.css"/>
+</head>
+<body>
+
+<h1>Game Settings</h1>
+
+<div class="settings-wrapper">
+        <div class="settings-options">
+            <a href="/lightsoff/gamesettings/easy" class="menu-link">Change mode to Easy</a><br>
+            <a href="/lightsoff/gamesettings/normal" class="menu-link">Change mode to Normal</a><br>
+            <a href="/lightsoff/gamesettings/hard" class="menu-link">Change mode to Hard</a><br>
+            <a href="/lightsoff/gamesettings/tukefei" class="menu-link">Change mode to TUKE FEI</a><br>
+            <a href="/lightsoff/backtogame" class="menu-link">Back to the game</a><br>
+        </div>
+        <div class="settings-image">
+            <span th:utext="${@lightsOffController.getModeImage()}"></span>
+        </div>
+
+</div>
+
+</body>
+</html>

@@ -3,6 +3,7 @@ package service;
 import lightsoff.entity.Comment;
 import lightsoff.service.CommentService;
 import lightsoff.service.CommentServiceJDBC;
+import lightsoff.service.CommentServiceJPA;
 import org.junit.Test;
 
 import java.sql.Timestamp;
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class CommentServiceTest {
 
-    private CommentService commentService = new CommentServiceJDBC();
+    private CommentService commentService = new CommentServiceJPA();
 
     @Test
     public void reset() {

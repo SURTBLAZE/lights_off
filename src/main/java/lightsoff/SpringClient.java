@@ -3,6 +3,8 @@ package lightsoff;
 import lightsoff.consoleui.ConsoleUI;
 import lightsoff.core.Field;
 import lightsoff.menu.MenuUI;
+import lightsoff.server.controller.LightsOffController;
+import lightsoff.server.controller.UserController;
 import lightsoff.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
@@ -70,6 +72,16 @@ public class SpringClient {
     @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate();
+    }
+
+    @Bean
+    public LightsOffController lightsOffController(){
+        return new LightsOffController();
+    }
+
+    @Bean
+    public UserController userController(){
+        return new UserController();
     }
 
 }

@@ -3,6 +3,8 @@ package service;
 import lightsoff.entity.Score;
 import lightsoff.service.ScoreService;
 import lightsoff.service.ScoreServiceJDBC;
+import lightsoff.service.ScoreServiceJPA;
+import lightsoff.service.ScoreServiceRestClient;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -10,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class ScoreServiceTest {
-    private ScoreService scoreService = new ScoreServiceJDBC();
+    private ScoreService scoreService = new ScoreServiceJPA();
 
     @Test
     public void reset() {
@@ -22,7 +24,6 @@ public class ScoreServiceTest {
     public void addScore() {
         var date = new Date();
         var score = new Score("Lights off", "Valeri", 19, new Timestamp(date.getTime()));
-        scoreService.reset();
         scoreService.addScore(score);
         var scores = scoreService.getTopScores("Lights off");
         assertEquals(1, scores.size());

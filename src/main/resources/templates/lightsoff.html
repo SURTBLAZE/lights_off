@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gamestudio</title>
+    <link rel="stylesheet" href="/css/stylesheet.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>Lights off</h1>
+<span class="game-info-block" th:utext="${@lightsOffController.getLevelInfo()}"></span>
+
+<span th:utext="${@lightsOffController.getHtmlField()}"></span>
+
+<div class="flex-container">
+    <a href="/lightsoff/new" class="menu-link">New game</a><br>
+    <a href="/lightsoff/menu" class="menu-link">Menu</a><br>
+    <a href="/lightsoff/gamesettings" class="menu-link">Game Settings</a><br>
+    <a href="/lightsoff/login" class="menu-link">Log in</a><br>
+    <a href="/lightsoff/logout" class="menu-link">Log out</a><br>
+</div>
+
+<span class="save-status" th:if="${@lightsOffController.isStatusMessage}" th:utext="${@lightsOffController.printStatusMessage()}"></span>
+
+<br>
+
+</body>
+</html>
