@@ -71,6 +71,10 @@ public class Field {
         return null;
     }
 
+    public void invertTile(int row,int column){
+        field[row][column].switchTile();
+    }
+
     public Tile[][] getField() {
         return field;
     }

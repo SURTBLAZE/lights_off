@@ -11,7 +11,10 @@
 <h1>Lights off</h1>
 <span class="game-info-block" th:utext="${@lightsOffController.getLevelInfo()}"></span>
 
-<span th:utext="${@lightsOffController.getHtmlField()}"></span>
+<div class="Field_wrapper">
+    <span th:utext="${@lightsOffController.getInvertButtons()}"></span>
+    <span th:utext="${@lightsOffController.getHtmlField()}"></span>
+</div>
 
 <div class="flex-container">
     <a href="/lightsoff/new" class="menu-link">New game</a><br>

@@ -80,6 +80,16 @@ public class LightsOffController {
         return "lightsoff";
     }
 
+    @RequestMapping("/lightsoff/invertRow")
+    public String invertRow(@RequestParam(required = false) Integer row){
+        if(row != null) {
+            for (int i = 0; i < 7; i++) {
+                field.invertTile(row - 1, i);
+            }
+        }
+        return "lightsoff";
+    }
+
     @RequestMapping("/lightsoff/menu/addnewcomment")
     public String addNewComment(){
         if(!userController.isLogged()){
@@ -413,6 +423,17 @@ public class LightsOffController {
         }
 
         sb.append("</table>\n");
+        return sb.toString();
+    }
+
+    public String getInvertButtons(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("<div class='invertButtons'>");
+        for(int i = 1;i <= 7;i++){
+            sb.append(" <a href='/lightsoff/invertRow?row=" + i + "'>Invert Row</a>");
+        }
+        sb.append("</div>");
+
         return sb.toString();
     }
 

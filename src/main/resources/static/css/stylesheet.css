@@ -95,3 +95,16 @@ td {
     margin-top: 10px;
     background-color: white;
 }
+
+.Field_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.invertButtons{
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
