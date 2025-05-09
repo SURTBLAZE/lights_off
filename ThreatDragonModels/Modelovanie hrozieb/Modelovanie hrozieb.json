@@ -1,0 +1,27 @@
+{
+  "version": "2.4.1",
+  "summary": {
+    "title": "Modelovanie hrozieb",
+    "owner": "Yaroslav Yakushevych",
+    "description": "Systém je založený na mikroservisnej architektúre, kde autentifikácia a autorizácia sú implementované pomocou protokolov OAuth 2.0 a OpenID Connect. Komunikácia medzi mikroservismi je zabezpečená prostredníctvom správového brokera (AMQP). Používatelia komunikujú s frontendovou časťou, ktorá posiela požiadavky cez API Gateway na príslušné mikroservisy. Používateľské údaje a metadáta sú uložené v distribuovanej databáze.\n",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "STRIDE diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.4.1",
+        "cells": [],
+        "description": "Diagram znázorňuje hlavné komponenty architektúry systému vrátane externých používateľov, API Gateway, mikroservisov, správového brokera a databázového úložiska. Na každý komponent bude aplikovaná STRIDE analýza s cieľom identifikovať možné hrozby: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service a Elevation of Privilege."
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "My users",
+    "threatTop": 0
+  }
+}
